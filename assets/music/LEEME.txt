@@ -1,0 +1,4 @@
+Esta carpeta contiene la música del proyecto:
+
+1. melodia-suave.wav (Melodía romántica suave de piano y caja de música ya incluida y activa por defecto).
+2. cancion.mp3 (Opcional: Si deseas sustituirla por tu propia canción MP3 en el futuro, colócala aquí con ese nombre).

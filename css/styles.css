@@ -1,0 +1,1079 @@
+/* ==========================================================================
+   UNIVERSO PARA TI ♡ - HOJA DE ESTILOS PRINCIPAL
+   Estética: Romanticismo Japonés, Universo 3D Inmersivo y Neón Cristalino
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. VARIABLES DE DISEÑO & RESET GLOBAL
+   -------------------------------------------------------------------------- */
+:root {
+  /* Escena 1: Paleta Pastel Romántica & Acuarela Japonesa */
+  --bg-pastel-1: #fff0f5;
+  --bg-pastel-2: #fed6e3;
+  --bg-pastel-3: #fce4ec;
+  --sakura-pink: #f8bbd0;
+  --sakura-accent: #f48fb1;
+  --rose-primary: #ff477e;
+  --rose-glow: rgba(255, 71, 126, 0.45);
+  --gold-warm: #d4af37;
+  --gold-glow: rgba(212, 175, 55, 0.4);
+  --ink-charcoal: #2b232a;
+  --card-parchment: #fffdfa;
+
+  /* Escena 2: Paleta Cósmica & Neón Profundo */
+  --space-deep-black: #05030a;
+  --space-midnight: #0b071e;
+  --space-violet: #150a33;
+  --neon-pink: #ff2a85;
+  --neon-pink-glow: 0 0 25px #ff2a85, 0 0 50px rgba(255, 42, 133, 0.8), 0 0 90px rgba(255, 42, 133, 0.4);
+  --honey-gold: #ffc837;
+
+  /* Tipografías */
+  --font-serif-title: 'Cinzel', 'Noto Serif JP', Georgia, serif;
+  --font-serif-body: 'Cormorant Garamond', 'Noto Serif JP', serif;
+  --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', Courier, monospace;
+
+  /* Transiciones */
+  --transition-smooth: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  font-family: var(--font-serif-body);
+  background-color: var(--bg-pastel-1);
+  color: var(--ink-charcoal);
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.theme-letter {
+  background: radial-gradient(circle at 50% 40%, var(--bg-pastel-1) 0%, var(--bg-pastel-2) 65%, var(--bg-pastel-3) 100%);
+  transition: background 1.5s ease;
+}
+
+body.theme-universe {
+  background: radial-gradient(ellipse at center, var(--space-violet) 0%, var(--space-midnight) 50%, var(--space-deep-black) 100%);
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   2. CURSOR PERSONALIZADO & ESTELAS
+   -------------------------------------------------------------------------- */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 20%, var(--rose-primary) 80%);
+  box-shadow: 0 0 12px var(--rose-primary), 0 0 24px rgba(255, 105, 180, 0.8);
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease-out, width 0.2s, height 0.2s;
+  mix-blend-mode: screen;
+}
+
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 111, 145, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease-out;
+}
+
+.click-heart-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  font-size: 1.2rem;
+  animation: floatFadeOut 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes floatFadeOut {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.6) rotate(0deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(-50%, calc(-50% - 35px)) scale(1.3) rotate(15deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% - 70px)) scale(0.3) rotate(-20deg);
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor, .cursor-glow {
+    display: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. REPRODUCTOR DE MÚSICA FLOTANTE
+   -------------------------------------------------------------------------- */
+.audio-widget {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+  box-shadow: 0 8px 24px rgba(255, 71, 126, 0.15);
+  transition: var(--transition-smooth);
+}
+
+.theme-universe .audio-widget {
+  background: rgba(20, 10, 35, 0.75);
+  border-color: rgba(255, 42, 133, 0.3);
+  box-shadow: 0 0 25px rgba(255, 42, 133, 0.2);
+}
+
+.audio-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--rose-primary), #ff758c);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 12px var(--rose-glow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.audio-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(255, 71, 126, 0.6);
+}
+
+.audio-icon {
+  font-size: 1.1rem;
+}
+
+.audio-equalizer {
+  display: none;
+  align-items: flex-end;
+  gap: 3px;
+  height: 16px;
+}
+
+.audio-equalizer.playing {
+  display: flex;
+}
+
+.audio-equalizer.playing + .audio-icon {
+  display: none;
+}
+
+.audio-equalizer .bar {
+  width: 3px;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 2px;
+  animation: equalize 1s infinite alternate ease-in-out;
+}
+
+.bar-1 { animation-delay: 0.1s; }
+.bar-2 { animation-delay: 0.3s; }
+.bar-3 { animation-delay: 0.5s; }
+.bar-4 { animation-delay: 0.2s; }
+
+@keyframes equalize {
+  0% { height: 25%; }
+  100% { height: 100%; }
+}
+
+.audio-controls-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.audio-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--ink-charcoal);
+  white-space: nowrap;
+}
+
+.theme-universe .audio-label {
+  color: #ffd1dc;
+}
+
+.volume-slider-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.volume-icon {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+#volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 70px;
+  height: 4px;
+  background: rgba(255, 71, 126, 0.3);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+#volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--rose-primary);
+  box-shadow: 0 0 6px var(--rose-primary);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+/* --------------------------------------------------------------------------
+   4. ESTRUCTURA Y LIENZOS DE FONDO
+   -------------------------------------------------------------------------- */
+#app-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.background-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.scene {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  z-index: 2;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
+}
+
+.scene-hidden {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. ESCENA 1: LA CARTA DEL CORAZÓN INTERACTIVA (RESPONSIVE)
+   -------------------------------------------------------------------------- */
+.letter-scene-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  min-height: 100svh;
+  padding: max(20px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(30px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.heart-envelope-container {
+  position: relative;
+  width: 100%;
+  max-width: min(680px, 94vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.heart-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s;
+  animation: floatHeart 4s ease-in-out infinite;
+}
+
+@keyframes floatHeart {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-16px) rotate(-1.5deg); }
+}
+
+.heart-card:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+
+.heart-shape {
+  position: relative;
+  width: clamp(140px, 32vw, 185px);
+  height: clamp(130px, 30vw, 170px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart-inner {
+  position: relative;
+  width: clamp(110px, 26vw, 150px);
+  height: clamp(110px, 26vw, 150px);
+  background: linear-gradient(145deg, #ff8da1 0%, #ff5c7c 50%, #e02853 100%);
+  transform: rotate(45deg);
+  border-radius: 20px 20px 8px 20px;
+  box-shadow: 0 15px 35px rgba(224, 40, 83, 0.4), inset 0 2px 8px rgba(255, 255, 255, 0.6);
+  transition: all 0.4s ease;
+}
+
+.heart-inner::before,
+.heart-inner::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: inherit;
+  box-shadow: inherit;
+}
+
+.heart-inner::before { top: -50%; left: 0; }
+.heart-inner::after { top: 0; left: -50%; }
+
+.heart-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 111, 145, 0.4) 0%, transparent 70%);
+  filter: blur(15px);
+  animation: pulseGlow 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.5; }
+  100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.9; }
+}
+
+.heart-center-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff7d6 0%, #d4af37 80%, #aa820a 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), inset 0 1px 3px #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.seal-heart {
+  font-size: 1.2rem;
+  color: #8c1d40;
+  font-weight: bold;
+}
+
+.heart-invite-text {
+  margin-top: 36px;
+  font-family: var(--font-serif-title);
+  font-size: clamp(1.05rem, 3vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #7a1d36;
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.heart-tap-hint {
+  margin-top: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #a8586c;
+  opacity: 0.8;
+}
+
+/* --------------------------------------------------------------------------
+   6. CARTA DESPLEGADA (EL PERGAMINO ROMÁNTICO ADAPTABLE)
+   -------------------------------------------------------------------------- */
+.letter-sheet {
+  position: relative;
+  display: none;
+  width: 100%;
+  max-width: min(650px, 94vw);
+  max-height: 86dvh;
+  max-height: 86svh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: var(--card-parchment);
+  padding: clamp(28px, 5vw, 50px) clamp(18px, 4vw, 45px);
+  border-radius: clamp(14px, 2.5vw, 20px);
+  box-shadow: 
+    0 25px 50px -12px rgba(120, 20, 50, 0.25),
+    0 0 0 1px rgba(212, 175, 55, 0.3),
+    inset 0 0 60px rgba(254, 214, 227, 0.25);
+  transform: scale(0.9) translateY(30px);
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  margin: auto;
+}
+
+/* Scrollbar estilizada para el pergamino */
+.letter-sheet::-webkit-scrollbar {
+  width: 6px;
+}
+.letter-sheet::-webkit-scrollbar-track {
+  background: rgba(254, 214, 227, 0.2);
+  border-radius: 10px;
+}
+.letter-sheet::-webkit-scrollbar-thumb {
+  background: rgba(255, 111, 145, 0.4);
+  border-radius: 10px;
+}
+
+.letter-sheet.active {
+  display: block;
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.letter-decorations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.kanji-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(10rem, 25vw, 18rem);
+  color: rgba(255, 111, 145, 0.04);
+  font-weight: 300;
+  line-height: 1;
+}
+
+.cherry-corner {
+  position: absolute;
+  width: clamp(24px, 5vw, 40px);
+  height: clamp(24px, 5vw, 40px);
+  border-color: rgba(212, 175, 55, 0.4);
+  border-style: solid;
+}
+
+.cherry-corner.top-left { top: 15px; left: 15px; border-width: 2px 0 0 2px; }
+.cherry-corner.top-right { top: 15px; right: 15px; border-width: 2px 2px 0 0; }
+.cherry-corner.bottom-left { bottom: 15px; left: 15px; border-width: 0 0 2px 2px; }
+.cherry-corner.bottom-right { bottom: 15px; right: 15px; border-width: 0 2px 2px 0; }
+
+.letter-header {
+  text-align: center;
+  margin-bottom: clamp(20px, 4vh, 32px);
+}
+
+.letter-pre-title {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: clamp(0.7rem, 1.8vw, 0.82rem);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold-warm);
+  margin-bottom: 6px;
+}
+
+.letter-title {
+  font-family: var(--font-serif-title);
+  font-size: clamp(1.4rem, 4.2vw, 2.1rem);
+  font-weight: 600;
+  color: #5c182c;
+  letter-spacing: 0.5px;
+}
+
+.gold-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-warm), transparent);
+  margin: 14px auto 0 auto;
+}
+
+.letter-body {
+  font-size: clamp(1rem, 2.3vw, 1.2rem);
+  line-height: clamp(1.68, 3.2vh, 1.88);
+  color: #3d3138;
+}
+
+.verse-stanza {
+  margin-bottom: clamp(16px, 2.8vh, 24px);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeInUpStanza 0.8s ease forwards;
+}
+
+.verse-stanza:nth-child(1) { animation-delay: 0.2s; }
+.verse-stanza:nth-child(2) { animation-delay: 0.4s; }
+.verse-stanza:nth-child(3) { animation-delay: 0.6s; }
+.verse-stanza:nth-child(4) { animation-delay: 0.8s; }
+.verse-stanza:nth-child(5) { animation-delay: 1.0s; }
+
+@keyframes fadeInUpStanza {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.verse-stanza strong {
+  color: #8c1d40;
+  font-weight: 600;
+}
+
+.highlight-stanza strong {
+  color: #b38600;
+  text-shadow: 0 0 10px rgba(255, 200, 55, 0.3);
+}
+
+.letter-climax {
+  margin: clamp(24px, 4vh, 36px) 0 clamp(20px, 3.5vh, 28px) 0;
+  padding: clamp(14px, 2.5vw, 18px) clamp(16px, 3.5vw, 24px);
+  background: linear-gradient(135deg, rgba(255, 240, 245, 0.8), rgba(254, 214, 227, 0.4));
+  border-left: 3px solid var(--gold-warm);
+  border-right: 3px solid var(--gold-warm);
+  border-radius: 8px;
+  font-family: var(--font-serif-title);
+  font-size: clamp(1.05rem, 2.6vw, 1.28rem);
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.65;
+  text-align: center;
+  color: #5c182c;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+  opacity: 0;
+  transform: scale(0.96);
+  animation: fadeInClimax 1s ease forwards 1.2s;
+}
+
+@keyframes fadeInClimax {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.letter-footer {
+  text-align: center;
+  margin-top: clamp(24px, 4vh, 36px);
+  opacity: 0;
+  animation: fadeInUpStanza 0.8s ease forwards 1.5s;
+}
+
+.btn-celestial {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: clamp(13px, 2.2vh, 16px) clamp(24px, 5vw, 36px);
+  min-height: 48px;
+  width: min(100%, 380px);
+  font-family: var(--font-sans);
+  font-size: clamp(0.85rem, 2.2vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff477e 0%, #ff5c7c 40%, #7b2cbf 100%);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 
+    0 8px 24px rgba(255, 71, 126, 0.4),
+    0 0 0 2px rgba(255, 255, 255, 0.6),
+    inset 0 1px 3px rgba(255, 255, 255, 0.8);
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow: hidden;
+}
+
+.btn-celestial:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(255, 71, 126, 0.6), 0 0 25px rgba(123, 44, 191, 0.5);
+}
+
+.btn-sparkle {
+  color: #ffd700;
+  font-size: 1.1rem;
+}
+
+/* --------------------------------------------------------------------------
+   7. ESCENA 2: UNIVERSO TRIDIMENSIONAL (THREE.JS)
+   -------------------------------------------------------------------------- */
+#scene-universe {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.webgl-universe-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  cursor: grab;
+  touch-action: none;
+}
+
+.webgl-universe-container:active {
+  cursor: grabbing;
+}
+
+.webgl-universe-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Ancla de la Fotografía: Proyectada matemáticamente desde el espacio 3D directamente sobre el corazón */
+.floating-photo-anchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: auto;
+  will-change: transform;
+  transform: translate(-50%, -50%);
+  user-select: none;
+}
+
+.celestial-photo-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 22px;
+}
+
+/* Halo neón envolvente de la fotografía (constante y sereno) */
+.photo-glow-halo {
+  position: absolute;
+  inset: -12px;
+  border-radius: 30px;
+  background: radial-gradient(circle, rgba(255, 42, 133, 0.35) 0%, rgba(255, 200, 55, 0.1) 50%, transparent 75%);
+  filter: blur(18px);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* Bisel de cristal acrílico con borde rosa luminoso y sombra de profundidad */
+.photo-glass-bezel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 2px solid rgba(255, 140, 185, 0.8);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.5),
+    0 8px 25px rgba(255, 42, 133, 0.35),
+    inset 0 0 12px rgba(255, 255, 255, 0.25);
+  background: rgba(18, 10, 32, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.photo-glass-bezel:hover {
+  transform: scale(1.025);
+  box-shadow: 
+    0 18px 45px rgba(0, 0, 0, 0.6),
+    0 10px 35px rgba(255, 42, 133, 0.5);
+  border-color: #ffd700;
+}
+
+/* Imagen real: 100% fiel, proporciones originales intactas, sin filtros que alteren el rostro */
+.photo-real {
+  display: block;
+  max-height: clamp(190px, 28vh, 270px);
+  width: auto;
+  max-width: 80vw;
+  border-radius: 16px;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Brillo especular sutil estático (sin destellos periódicos) */
+.photo-specular-sheen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* Partículas estelares orbitando la foto */
+.photo-sparkles-ring {
+  position: absolute;
+  inset: -20px;
+  pointer-events: none;
+}
+
+.sparkle-dot {
+  position: absolute;
+  color: #ffd700;
+  font-size: 1.1rem;
+  text-shadow: 0 0 10px #ffb300, 0 0 20px #ff8f00;
+  animation: floatSparkle 3s ease-in-out infinite alternate;
+}
+
+.sp-1 { top: 0; left: 10%; animation-delay: 0.2s; }
+.sp-2 { top: 15%; right: 5%; animation-delay: 0.8s; color: #ff80bf; }
+.sp-3 { bottom: 8%; left: 8%; animation-delay: 1.4s; color: #ffffff; }
+.sp-4 { bottom: 0; right: 15%; animation-delay: 2.0s; }
+
+@keyframes floatSparkle {
+  0% { transform: translateY(0) scale(0.8); opacity: 0.5; }
+  100% { transform: translateY(-8px) scale(1.3); opacity: 1; }
+}
+
+.photo-celestial-caption {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-serif-title);
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffe0e9;
+  text-shadow: 0 0 14px rgba(255, 71, 126, 0.9), 0 0 25px rgba(255, 42, 133, 0.6);
+  background: rgba(14, 7, 24, 0.6);
+  backdrop-filter: blur(8px);
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 182, 193, 0.3);
+}
+
+.caption-star {
+  color: #ffd700;
+}
+
+/* --------------------------------------------------------------------------
+   8. FRASES ROMÁNTICAS ORBITANDO EN 3D
+   -------------------------------------------------------------------------- */
+.orbit-3d-badges-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 15;
+  overflow: hidden;
+}
+
+.orbit-3d-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  padding: 8px 18px;
+  background: rgba(18, 10, 32, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 182, 193, 0.45);
+  border-radius: 30px;
+  font-family: var(--font-sans);
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  color: #ffffff;
+  white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(255, 42, 133, 0.3);
+  pointer-events: auto;
+  cursor: default;
+  will-change: transform, opacity;
+  transition: box-shadow 0.25s, border-color 0.25s, background 0.25s;
+}
+
+.orbit-3d-badge:hover {
+  transform: translate(-50%, -50%) scale(1.18) !important;
+  background: rgba(255, 42, 133, 0.35);
+  border-color: #ffd700;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+  z-index: 9999 !important;
+}
+
+
+
+/* --------------------------------------------------------------------------
+   10. NAVEGACIÓN DE RETORNO
+   -------------------------------------------------------------------------- */
+.universe-nav {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  z-index: 1000;
+}
+
+.nav-return-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(18, 10, 32, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 182, 193, 0.3);
+  border-radius: 30px;
+  color: #ffd1dc;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-return-btn:hover {
+  background: rgba(255, 42, 133, 0.25);
+  border-color: var(--neon-pink);
+  color: #ffffff;
+  transform: translateX(-3px);
+  box-shadow: 0 0 20px rgba(255, 42, 133, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   10. TRANSICIÓN CINEMATOGRÁFICA ENTRE ESCENAS
+   -------------------------------------------------------------------------- */
+.cinematic-warp {
+  animation: warpTransition 1.4s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+@keyframes warpTransition {
+  0% { opacity: 1; transform: scale(1); filter: blur(0px); }
+  50% { opacity: 0.4; transform: scale(1.2); filter: blur(8px); }
+  100% { opacity: 0; transform: scale(1.5); filter: blur(15px); visibility: hidden; }
+}
+
+.fade-in-universe {
+  animation: enterUniverse 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes enterUniverse {
+  0% { opacity: 0; transform: scale(0.9); filter: blur(10px); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0px); }
+}
+
+/* --------------------------------------------------------------------------
+   11. ADAPTABILIDAD UNIVERSAL: MÓVILES, TABLETAS, LAPTOPS, DESKTOPS Y 4K
+   -------------------------------------------------------------------------- */
+
+/* Safe area insets para iPhone / Android con notch o barra gestual */
+.audio-widget {
+  top: max(16px, env(safe-area-inset-top));
+  right: max(16px, env(safe-area-inset-right));
+}
+
+.universe-nav {
+  bottom: max(16px, env(safe-area-inset-bottom));
+  left: max(16px, env(safe-area-inset-left));
+}
+
+/* TABLETAS (Pantallas medianas entre 651px y 1024px) */
+@media (max-width: 1024px) {
+  .heart-envelope-container {
+    max-width: 90vw;
+  }
+  .letter-sheet {
+    max-width: 88vw;
+    padding: 35px 30px;
+  }
+  .photo-real {
+    max-height: clamp(180px, 26dvh, 260px);
+  }
+  .orbit-3d-badge {
+    font-size: 0.8rem;
+    padding: 6px 14px;
+  }
+}
+
+/* SMARTPHONES Y TELÉFONOS EN VERTICAL (<= 650px) */
+@media (max-width: 650px) {
+  .audio-widget {
+    top: max(12px, env(safe-area-inset-top));
+    right: max(12px, env(safe-area-inset-right));
+    padding: 6px 10px;
+    gap: 8px;
+  }
+  .audio-label, .volume-slider-wrapper {
+    display: none;
+  }
+  .audio-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .letter-scene-content {
+    padding: max(15px, env(safe-area-inset-top)) 12px max(25px, env(safe-area-inset-bottom)) 12px;
+  }
+
+  .letter-sheet {
+    padding: 26px 16px;
+    max-height: 84dvh;
+    border-radius: 14px;
+  }
+
+  .letter-title {
+    font-size: 1.45rem;
+  }
+
+  .letter-body {
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  .letter-climax {
+    font-size: 1.05rem;
+    padding: 12px 14px;
+    margin: 20px 0;
+  }
+
+  .btn-celestial {
+    width: 100%;
+    padding: 13px 20px;
+    font-size: 0.86rem;
+  }
+
+  .photo-real {
+    max-height: clamp(150px, 22dvh, 200px);
+    max-width: 78vw;
+  }
+
+  .photo-celestial-caption {
+    font-size: 0.76rem;
+    padding: 3px 10px;
+    letter-spacing: 1px;
+  }
+
+  .orbit-3d-badge {
+    padding: 4px 10px;
+    font-size: 0.68rem;
+    letter-spacing: 0.4px;
+  }
+
+  .universe-nav {
+    bottom: max(12px, env(safe-area-inset-bottom));
+    left: max(12px, env(safe-area-inset-left));
+  }
+  .nav-return-btn {
+    padding: 8px 14px;
+    font-size: 0.78rem;
+  }
+}
+
+/* SMARTPHONES HORIZONTALES / PANTALLAS DE POCA ALTURA (< 520px de alto) */
+@media (max-height: 520px) {
+  .letter-scene-content {
+    padding-top: 15px;
+    padding-bottom: 20px;
+  }
+  .heart-shape {
+    width: 130px;
+    height: 120px;
+  }
+  .heart-inner {
+    width: 100px;
+    height: 100px;
+  }
+  .letter-sheet {
+    max-height: 80dvh;
+    padding: 20px 24px;
+  }
+  .photo-real {
+    max-height: clamp(120px, 30vh, 160px);
+  }
+  .photo-celestial-caption {
+    display: none;
+  }
+}
+
+/* PANTALLAS ULTRAWIDE Y MONITORES 4K (>= 1921px) */
+@media (min-width: 1921px) {
+  .letter-sheet {
+    max-width: 800px;
+    padding: 60px 55px;
+  }
+  .letter-title {
+    font-size: 2.6rem;
+  }
+  .letter-body {
+    font-size: 1.4rem;
+    line-height: 2;
+  }
+  .photo-real {
+    max-height: 380px;
+  }
+  .orbit-3d-badge {
+    font-size: 1.05rem;
+    padding: 10px 22px;
+  }
+}

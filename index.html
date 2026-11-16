@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes">
+  <title>Mis pensamientos sobre ti ♡</title>
+
+  <!-- Favicon Heart -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
+
+  <!-- Google Fonts: Caligrafía poética y tipografía moderna -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Great+Vibes&family=Noto+Serif+JP:wght@300;400;600&family=Space+Grotesk:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- Three.js CDN para el Universo y Corazón 3D -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="theme-letter">
+
+  <!-- Cursor Personalizado -->
+  <div id="custom-cursor" class="custom-cursor" aria-hidden="true"></div>
+  <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- Controles de Audio Flotantes -->
+  <header class="audio-widget" id="audio-widget" aria-label="Reproductor de música">
+    <button id="btn-audio-toggle" class="audio-btn" aria-label="Reproducir o pausar música" title="Música romántica">
+      <span class="audio-icon" id="audio-icon">♪</span>
+      <div class="audio-equalizer" id="audio-equalizer" aria-hidden="true">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+        <span class="bar bar-4"></span>
+      </div>
+    </button>
+    <div class="audio-controls-panel">
+      <span class="audio-label" id="audio-label">Para ti ♡</span>
+      <div class="volume-slider-wrapper">
+        <span class="volume-icon">🔈</span>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.35" aria-label="Control de volumen">
+        <span class="volume-icon">🔊</span>
+      </div>
+    </div>
+    <audio id="bg-audio" preload="auto" loop>
+      <source src="assets/music/melodia-suave.wav" type="audio/wav">
+      <source src="assets/music/cancion.mp3" type="audio/mpeg">
+    </audio>
+  </header>
+
+  <!-- Contenedor de Partículas de Clic -->
+  <div id="click-particles-container" aria-hidden="true"></div>
+
+  <main id="app-container">
+
+    <!-- ========================================== -->
+    <!-- ESCENA 1: LA CARTA DEL CORAZÓN             -->
+    <!-- ========================================== -->
+    <section id="scene-letter" class="scene scene-active" aria-label="Carta romántica interactiva">
+      <!-- Lienzo para partículas y pétalos de fondo -->
+      <canvas id="letter-canvas" class="background-canvas"></canvas>
+
+      <div class="letter-scene-content">
+        <!-- Envoltorio de la Carta en forma de Corazón -->
+        <div class="heart-envelope-container" id="heart-envelope-container">
+
+          <!-- Elemento del Corazón interactivo cerrado -->
+          <div class="heart-card" id="heart-card" role="button" tabindex="0" aria-label="Abrir carta del corazón"
+            title="Haz clic para abrir">
+            <div class="heart-shape">
+              <div class="heart-glow"></div>
+              <div class="heart-inner">
+                <div class="heart-origami-folds"></div>
+                <div class="heart-center-seal">
+                  <span class="seal-heart">♡</span>
+                </div>
+              </div>
+            </div>
+            <p class="heart-invite-text">Tengo algo especial para ti ♡</p>
+            <span class="heart-tap-hint">Toca para abrir</span>
+          </div>
+
+          <!-- Carta Desplegada (Aparece al abrir) -->
+          <article class="letter-sheet" id="letter-sheet" aria-hidden="true">
+            <div class="letter-decorations">
+              <span class="kanji-watermark" aria-hidden="true">愛</span>
+              <div class="cherry-corner top-left"></div>
+              <div class="cherry-corner top-right"></div>
+              <div class="cherry-corner bottom-left"></div>
+              <div class="cherry-corner bottom-right"></div>
+            </div>
+
+            <header class="letter-header">
+              <span class="letter-pre-title">永遠の物語 ・ Un relato eterno</span>
+              <h1 class="letter-title">Para ti Danny</h1>
+              <div class="gold-divider"></div>
+            </header>
+
+            <div class="letter-body">
+              <p class="verse-stanza">
+                Cae la tarde en silencio,<br>
+                y como la flor del cerezo al rozar el viento de primavera,<br>
+                aparece tu recuerdo: sereno, puro y eterno.
+              </p>
+
+              <p class="verse-stanza">
+                Dicen que en la noche más profunda<br>
+                el firmamento guarda secretos sagrados;<br>
+                pero mi refugio no se oculta en el cielo lejano,<br>
+                sino en la <strong>tranquilidad infinita de tu presencia</strong>,<br>
+                ese remanso tibio donde el tiempo se detiene<br>
+                y el mundo olvida sus prisas.
+              </p>
+
+              <p class="verse-stanza">
+                <strong>Tu cabello</strong>, suave como hebras de seda bajo la luna,<br>
+                fluye con una gracia libre y delicada,<br>
+                un lienzo de calma digno de contemplar despacio,<br>
+                tan perfecto como la brisa que acaricia los sauces.
+              </p>
+
+              <p class="verse-stanza highlight-stanza">
+                Y en medio de tanta paz, brotan <strong>tus ojos color miel</strong>:<br>
+                dos pequeñas luces doradas, dos destellos de fuego dulce,<br>
+                capaces de disipar las sombras más oscuras del mundo<br>
+                e iluminar cualquier sendero con solo mirar.
+              </p>
+
+              <p class="verse-stanza">
+                Son los pequeños detalles los que te hacen única:<br>
+                la ternura callada de tu risa, la calidez de tus pasos,<br>
+                el milagro constante de existir tal como eres.
+              </p>
+
+              <blockquote class="letter-climax">
+                «Y si el universo tuviera que elegir una estrella para admirar eternamente, elegiría tus ojos.»
+              </blockquote>
+            </div>
+
+            <footer class="letter-footer">
+              <button id="btn-discover-universe" class="btn-celestial" type="button">
+                <span class="btn-sparkle">✦</span>
+                <span class="btn-text">Descubrir tu universo ♡</span>
+                <span class="btn-sparkle">✦</span>
+              </button>
+            </footer>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- ESCENA 2: UN UNIVERSO ENTERO PARA TI (3D)  -->
+    <!-- ========================================== -->
+    <section id="scene-universe" class="scene scene-hidden" aria-label="Universo tridimensional interactivo">
+
+      <!-- Contenedor del Lienzo WebGL 3D (Three.js con Navegación Esférica) -->
+      <div id="webgl-universe-container" class="webgl-universe-container"></div>
+
+      <!-- Fotografía Personalizada Anclada en el Espacio 3D (Proyectada sobre el corazón) -->
+      <div class="floating-photo-anchor" id="floating-photo-anchor" role="region"
+        aria-label="Fotografía de la persona especial">
+        <div class="celestial-photo-frame">
+          <div class="photo-glow-halo"></div>
+
+          <div class="photo-glass-bezel">
+            <img src="assets/images/persona-especial.jpg" alt="Persona especial" class="photo-real" id="special-photo">
+            <div class="photo-specular-sheen"></div>
+          </div>
+
+          <!-- Partículas estelares orbitando la foto -->
+          <div class="photo-sparkles-ring" aria-hidden="true">
+            <span class="sparkle-dot sp-1">✦</span>
+            <span class="sparkle-dot sp-2">✧</span>
+            <span class="sparkle-dot sp-3">✦</span>
+            <span class="sparkle-dot sp-4">✧</span>
+          </div>
+        </div>
+
+        <div class="photo-celestial-caption">
+          <span class="caption-star">✧</span>
+          <span>La estrella más hermosa de mi cielo</span>
+          <span class="caption-star">✧</span>
+        </div>
+      </div>
+
+      <!-- Capa de Frases Románticas en Órbitas 3D Proyectadas -->
+      <div id="orbit-3d-badges-container" class="orbit-3d-badges-container"
+        aria-label="Frases románticas orbitando en el espacio"></div>
+
+
+
+      <!-- Barra de navegación / Regresar a la carta -->
+      <nav class="universe-nav">
+        <button id="btn-return-letter" class="nav-return-btn" type="button" title="Volver a leer la carta">
+          <span>← Volver a la carta</span>
+        </button>
+      </nav>
+    </section>
+
+  </main>
+
+  <!-- Módulos JavaScript Vanilla -->
+  <script src="js/audio.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/universe3d.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
